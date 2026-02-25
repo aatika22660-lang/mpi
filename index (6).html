@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9700/42 — Microprocessors & Interfacing</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-inner">
+      <span class="course-tag">9700 / 42</span>
+      <h1>Microprocessors<br/><em>&amp; Interfacing</em></h1>
+      <p class="hero-sub">Your visual study guide — architecture, components, types & platforms</p>
+      <nav class="hero-nav">
+        <a href="#lecture1" class="nav-pill">⚡ Lecture 1</a>
+        <a href="#lecture2" class="nav-pill">🔧 Lecture 2</a>
+        <a href="#platforms" class="nav-pill">🖥 Platforms</a>
+      </nav>
+    </div>
+    <div class="hero-chip">
+      <img src="https://c8.alamy.com/comp/2AFJX7K/computer-microprocessor-chip-on-circuit-board-2AFJX7K.jpg" alt="Microprocessor chip" />
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── LECTURE 1 ── -->
+    <section id="lecture1" class="section">
+      <div class="section-label-wrap">
+        <span class="section-label mint">Lecture 1</span>
+        <h2>Introduction to Microcontrollers</h2>
+      </div>
+
+      <!-- What is a microcontroller -->
+      <div class="hero-card" style="--hc:#e0f7ee">
+        <div class="hero-card-text">
+          <h3>What is a Microcontroller?</h3>
+          <p>A <strong>microcontroller (MCU / µC)</strong> is a compact integrated circuit designed to govern a specific operation in an embedded system — essentially a <em>"tiny computer"</em> optimised to run a single program.</p>
+          <div class="tag-row">
+            <span class="tag">🔌 Input</span>
+            <span class="tag">⚙️ Process</span>
+            <span class="tag">📤 Output</span>
+            <span class="tag">📡 Communicate</span>
+          </div>
+          <p class="caption">Bridges the physical world ↔ digital computer world</p>
+        </div>
+        <div class="hero-card-img">
+          <img src="https://www.arduino.cc/wiki/static/dd8a4e8f4d07cf7e24bc2c1d66c68427/a89e5/arduinoUno.jpg" alt="Arduino microcontroller" onerror="this.parentElement.style.display='none'" />
+        </div>
+      </div>
+
+      <!-- Basic structure -->
+      <div class="sub-section">
+        <h3 class="sub-h">🏗️ Basic Structure of a Microcomputer</h3>
+        <div class="structure-grid">
+          <div class="str-card" style="--sc:#fde8f0">
+            <div class="str-icon">🧠</div>
+            <div class="str-label">CPU</div>
+            <div class="str-desc">Central Processing Unit — the brain</div>
+          </div>
+          <div class="str-card" style="--sc:#e0f7ee">
+            <div class="str-icon">💾</div>
+            <div class="str-label">Memory</div>
+            <div class="str-desc">ROM/Flash + RAM on same chip</div>
+          </div>
+          <div class="str-card" style="--sc:#e0eeff">
+            <div class="str-icon">🔌</div>
+            <div class="str-label">I/O Ports</div>
+            <div class="str-desc">Interface with external hardware</div>
+          </div>
+          <div class="str-card" style="--sc:#fff3d6">
+            <div class="str-icon">🔗</div>
+            <div class="str-label">Serial Ports</div>
+            <div class="str-desc">Connect to other digital devices</div>
+          </div>
+          <div class="str-card" style="--sc:#ede0ff">
+            <div class="str-icon">⏱️</div>
+            <div class="str-label">Timers</div>
+            <div class="str-desc">Count, pulse gen, frequency measurement</div>
+          </div>
+          <div class="str-card" style="--sc:#fde8f0">
+            <div class="str-icon">🔄</div>
+            <div class="str-label">ADC & DAC</div>
+            <div class="str-desc">Analog ↔ Digital conversion</div>
+          </div>
+          <div class="str-card" style="--sc:#e0f7ee">
+            <div class="str-icon">🚨</div>
+            <div class="str-label">Interrupt Control</div>
+            <div class="str-desc">Pause CPU for external events</div>
+          </div>
+          <div class="str-card" style="--sc:#e0eeff">
+            <div class="str-icon">🔩</div>
+            <div class="str-label">Special Blocks</div>
+            <div class="str-desc">Custom modules for specific tasks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Components deep dive -->
+      <div class="sub-section">
+        <h3 class="sub-h">🔍 Components in Detail</h3>
+        <div class="component-list">
+
+          <div class="comp-item" style="--ci:#fde8f0">
+            <div class="comp-num">01</div>
+            <div class="comp-body">
+              <h4>🧠 CPU — The Brain</h4>
+              <p>Fetches, decodes, and executes instructions. Ranges from <strong>4-bit</strong> to <strong>128-bit</strong> processors. Connects all components into a single system.</p>
+            </div>
+          </div>
+
+          <div class="comp-item" style="--ci:#e0f7ee">
+            <div class="comp-num">02</div>
+            <div class="comp-body">
+              <h4>💾 Memory — Storage</h4>
+              <p>Contained on the same chip. Stores both program and data.</p>
+              <div class="mem-row">
+                <div class="mem-badge rom">ROM / Flash<br/><small>Non-volatile · stores program code</small></div>
+                <div class="mem-badge ram">RAM<br/><small>Volatile · temporary data during execution</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp-item" style="--ci:#e0eeff">
+            <div class="comp-num">03</div>
+            <div class="comp-body">
+              <h4>🔌 Connectivity & Communication</h4>
+              <div class="port-row">
+                <div class="port-card">
+                  <strong>I/O Ports</strong>
+                  <p>Drive external hardware — LCD displays, printers, sensors</p>
+                </div>
+                <div class="port-card">
+                  <strong>Serial Ports</strong>
+                  <p>Serial interface between MCU and other peripherals</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp-item" style="--ci:#fff3d6">
+            <div class="comp-num">04</div>
+            <div class="comp-body">
+              <h4>⚙️ Control & Conversion</h4>
+              <div class="port-row">
+                <div class="port-card">
+                  <strong>⏱ Timers & Counters</strong>
+                  <p>Count external pulses, pulse generation, clock functions, frequency measurement, oscillations</p>
+                </div>
+                <div class="port-card">
+                  <strong>🔄 ADC & DAC</strong>
+                  <p><b>ADC:</b> Analog → Digital (temperature, light) &nbsp;|&nbsp; <b>DAC:</b> Digital → Analog (DC motors)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MCU Types -->
+      <div class="sub-section">
+        <h3 class="sub-h">📂 Microcontroller Types</h3>
+
+        <!-- By bit width -->
+        <div class="type-block">
+          <div class="type-label">1 · By Bit Width</div>
+          <div class="bit-row">
+            <div class="bit-card" style="--bc:#fde8f0">
+              <div class="bit-size">8-bit</div>
+              <div class="bit-desc">Basic logic & arithmetic. Low power, simple tasks.</div>
+              <div class="bit-ex">Intel 8031, 8051</div>
+            </div>
+            <div class="bit-arrow">→</div>
+            <div class="bit-card" style="--bc:#fff3d6">
+              <div class="bit-size">16-bit</div>
+              <div class="bit-desc">Greater accuracy & performance than 8-bit.</div>
+              <div class="bit-ex">Intel 8096</div>
+            </div>
+            <div class="bit-arrow">→</div>
+            <div class="bit-card" style="--bc:#e0f7ee">
+              <div class="bit-size">32-bit</div>
+              <div class="bit-desc">High-end, complex logic. Automatically controlled appliances.</div>
+              <div class="bit-ex">ARM Cortex-M, PIC32</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- By Memory Structure -->
+        <div class="type-block">
+          <div class="type-label">2 · By Memory Structure</div>
+          <div class="mem-compare">
+            <div class="mc-card" style="--mcc:#e0eeff">
+              <h5>External Memory MCU</h5>
+              <p>Used when the embedded system needs components <em>not</em> on a single chip</p>
+            </div>
+            <div class="mc-vs">VS</div>
+            <div class="mc-card" style="--mcc:#e0f7ee">
+              <h5>Embedded Memory MCU ✅</h5>
+              <p>Most common — CPU, RAM, ROM & I/O all integrated into <strong>one silicon chip</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- By Instruction Set -->
+        <div class="type-block">
+          <div class="type-label">3 · By Instruction Set</div>
+          <div class="isa-compare">
+            <div class="isa-card" style="--ic:#fde8f0">
+              <div class="isa-name">CISC</div>
+              <div class="isa-full">Complex Instruction Set Computer</div>
+              <p>Reduces <strong>number of instructions</strong> per program. Fewer lines of code but slower execution (multiple clock cycles per instruction).</p>
+            </div>
+            <div class="isa-card" style="--ic:#e0f7ee">
+              <div class="isa-name">RISC</div>
+              <div class="isa-full">Reduced Instruction Set Computer</div>
+              <p>Reduces <strong>execution time</strong> — one clock cycle per instruction. Uses pipelining for parallel execution. More lines of code needed.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- By Architecture -->
+        <div class="type-block">
+          <div class="type-label">4 · By Architecture</div>
+          <div class="arch-compare">
+            <div class="arch-card" style="--acc:#fff3d6">
+              <div class="arch-name">Princeton / Von Neumann</div>
+              <div class="arch-diagram">
+                <div class="arch-box cpu-box">CPU</div>
+                <div class="arch-bus shared-bus">⟵ Shared Bus (Instructions + Data) ⟶</div>
+                <div class="arch-box mem-box">Memory</div>
+              </div>
+              <p>Shared bus & memory space for instructions and data</p>
+            </div>
+            <div class="arch-card" style="--acc:#e0eeff">
+              <div class="arch-name">Harvard Architecture ⚡ Faster</div>
+              <div class="arch-diagram harvard">
+                <div class="arch-box cpu-box">CPU</div>
+                <div class="arch-buses">
+                  <div class="h-bus prog-bus">Program Bus ⟶</div>
+                  <div class="h-bus data-bus">Data Bus ⟶</div>
+                </div>
+                <div class="arch-mems">
+                  <div class="arch-box small-box">Program Memory</div>
+                  <div class="arch-box small-box">Data Memory</div>
+                </div>
+              </div>
+              <p>Separate buses — CPU fetches instructions & data simultaneously</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCU Families -->
+      <div class="sub-section">
+        <h3 class="sub-h">🏭 Microcontroller Families</h3>
+        <div class="family-grid">
+          <div class="fam-card" style="--fc:#fde8f0">
+            <div class="fam-num">8051</div>
+            <div class="fam-maker">Intel</div>
+            <div class="fam-variants">
+              <span>8051 Standard</span>
+              <span>8052 Enhanced (256B RAM, 3 timers)</span>
+              <span>8031 ROM-less</span>
+            </div>
+            <div class="fam-mem">NV-RAM · UV-EPROM · Flash</div>
+          </div>
+          <div class="fam-card" style="--fc:#e0f7ee">
+            <div class="fam-num">PIC</div>
+            <div class="fam-maker">Microchip Technology</div>
+            <div class="fam-variants">
+              <span>Solitary chip MCU</span>
+              <span>8-bit market leader</span>
+              <span>Serial programming</span>
+            </div>
+            <div class="fam-mem">Low cost · Wide availability</div>
+          </div>
+          <div class="fam-card" style="--fc:#e0eeff">
+            <div class="fam-num">AVR</div>
+            <div class="fam-maker">Atmel (1996)</div>
+            <div class="fam-variants">
+              <span>Harvard Architecture</span>
+              <span>8-bit RISC</span>
+              <span>First on-chip Flash memory</span>
+            </div>
+            <div class="fam-mem">Customized Harvard arch</div>
+          </div>
+          <div class="fam-card" style="--fc:#fff3d6">
+            <div class="fam-num">ARM</div>
+            <div class="fam-maker">ARM Ltd. / Acorn 1980</div>
+            <div class="fam-variants">
+              <span>32-bit RISC</span>
+              <span>Designs & licenses (doesn't fab)</span>
+              <span>No on-board Flash</span>
+            </div>
+            <div class="fam-mem">Used in smartphones, IoT</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Applications -->
+      <div class="sub-section">
+        <h3 class="sub-h">🌍 Applications of Microcontrollers</h3>
+        <div class="app-grid">
+          <div class="app-card" style="--apc:#fde8f0">🌡️<span>Day-to-Day</span><small>Temp sensing, fire detection, safety</small></div>
+          <div class="app-card" style="--apc:#e0f7ee">🏭<span>Industrial</span><small>Process control, metering, voltmeters</small></div>
+          <div class="app-card" style="--apc:#e0eeff">📱<span>Consumer Electronics</span><small>Computers, printers, cameras</small></div>
+          <div class="app-card" style="--apc:#fff3d6">🥽<span>iSphere</span><small>Proximity UI for 3D modeling</small></div>
+          <div class="app-card" style="--apc:#ede0ff">🍳<span>AR Kitchens</span><small>Smart interfaces for guided cooking</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LECTURE 2 ── -->
+    <section id="lecture2" class="section">
+      <div class="section-label-wrap">
+        <span class="section-label blue">Lecture 2</span>
+        <h2>What is a Microprocessor?</h2>
+      </div>
+
+      <div class="hero-card" style="--hc:#e0eeff">
+        <div class="hero-card-text">
+          <h3>Microprocessor vs Microcontroller</h3>
+          <p>A <strong>microprocessor</strong> is an IC that functions as a <strong>complete CPU on a single chip</strong>. It processes data by executing programmed instructions and managing all computational & control tasks.</p>
+          <p style="margin-top:12px">Unlike a microcontroller, it does <em>not</em> include memory, I/O, or peripherals on the same chip — it needs external components.</p>
+        </div>
+        <div class="hero-card-img dark-bg">
+          <img src="https://c8.alamy.com/comp/2AFJX7K/computer-microprocessor-chip-on-circuit-board-2AFJX7K.jpg" alt="Microprocessor chip" onerror="this.parentElement.style.display='none'" />
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="sub-section">
+        <h3 class="sub-h">🏛️ Microprocessor Architecture</h3>
+        <div class="arch-flow">
+          <div class="af-box" style="--af:#fde8f0">
+            <div class="af-icon">➕</div>
+            <h4>ALU</h4>
+            <p>Arithmetic Logical Unit — performs arithmetic & logical operations</p>
+          </div>
+          <div class="af-line"></div>
+          <div class="af-box" style="--af:#e0f7ee">
+            <div class="af-icon">🎛️</div>
+            <h4>Control Unit</h4>
+            <p>Directs data flow & instruction execution</p>
+          </div>
+          <div class="af-line"></div>
+          <div class="af-box" style="--af:#e0eeff">
+            <div class="af-icon">📋</div>
+            <h4>Registers</h4>
+            <p>Temporary data storage inside the CPU</p>
+          </div>
+          <div class="af-line"></div>
+          <div class="af-box" style="--af:#fff3d6">
+            <div class="af-icon">🚌</div>
+            <h4>Buses</h4>
+            <div class="bus-tags">
+              <span>📊 Data Bus — transfers data</span>
+              <span>📍 Address Bus — specifies memory location</span>
+              <span>🕹 Control Bus — manages operations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CISC vs RISC deep dive -->
+      <div class="sub-section">
+        <h3 class="sub-h">⚔️ CISC vs RISC Deep Dive</h3>
+        <div class="cisc-risc">
+          <div class="cr-card cisc" style="--cc:#fde8f0">
+            <div class="cr-badge">CISC</div>
+            <h4>Complex Instruction Set</h4>
+            <p>Designed to <strong>minimise the number of instructions</strong> per program</p>
+            <div class="cr-detail">
+              <div class="cr-row good">✅ Very small program length</div>
+              <div class="cr-row bad">❌ Multiple machine cycles per instruction</div>
+              <div class="cr-row bad">❌ Slower execution speed</div>
+            </div>
+            <div class="cr-note">A single CISC instruction can do: arithmetic + memory store + memory read</div>
+            <div class="cr-ex">Used in: x86 → Desktops, Laptops</div>
+          </div>
+          <div class="cr-card risc" style="--cc:#e0f7ee">
+            <div class="cr-badge risc-badge">RISC</div>
+            <h4>Reduced Instruction Set</h4>
+            <p>Designed to <strong>reduce execution time</strong> with simple instructions</p>
+            <div class="cr-detail">
+              <div class="cr-row good">✅ One clock cycle per instruction</div>
+              <div class="cr-row good">✅ Pipelining → parallel execution</div>
+              <div class="cr-row bad">❌ More lines of code needed</div>
+              <div class="cr-row bad">❌ Needs more RAM</div>
+            </div>
+            <div class="cr-note">Pipelining = parts of different instructions execute simultaneously</div>
+            <div class="cr-ex">Used in: ARM → Smartphones, Embedded</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PLATFORMS ── -->
+    <section id="platforms" class="section">
+      <div class="section-label-wrap">
+        <span class="section-label purple">Section 2.4</span>
+        <h2>Architectures & Platforms</h2>
+      </div>
+
+      <!-- x86 vs ARM -->
+      <div class="sub-section">
+        <h3 class="sub-h">🆚 x86 vs ARM</h3>
+        <div class="platform-compare">
+          <div class="plat-card x86" style="--pc:#fff3d6">
+            <div class="plat-badge">x86</div>
+            <div class="plat-chip">CISC</div>
+            <h4>High Performance</h4>
+            <div class="plat-rows">
+              <div class="plat-row"><span>🎯 Goal</span><span>Heavy tasks & performance</span></div>
+              <div class="plat-row"><span>💻 Use</span><span>Desktops, PCs, Laptops</span></div>
+              <div class="plat-row"><span>👑 Dominates</span><span>Desktop market</span></div>
+            </div>
+          </div>
+          <div class="plat-vs">VS</div>
+          <div class="plat-card arm" style="--pc:#e0eeff">
+            <div class="plat-badge arm-b">ARM</div>
+            <div class="plat-chip">RISC</div>
+            <h4>Power Efficient</h4>
+            <div class="plat-rows">
+              <div class="plat-row"><span>🎯 Goal</span><span>Battery life & efficiency</span></div>
+              <div class="plat-row"><span>📱 Use</span><span>Smartphones, tablets, IoT</span></div>
+              <div class="plat-row"><span>👑 Dominates</span><span>Mobile & embedded (Pi, Rock Pi)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SBC Comparison -->
+      <div class="sub-section">
+        <h3 class="sub-h">🖥 Single Board Computer (SBC) Comparison</h3>
+        <div class="sbc-grid">
+
+          <div class="sbc-card nvidia">
+            <div class="sbc-img-wrap">
+              <img src="https://avantek.co.uk/app/uploads/2023/08/Avantek-BOXER-8654AI-KIT-1.jpg" alt="NVIDIA Jetson" onerror="this.style.display='none'" />
+            </div>
+            <div class="sbc-body">
+              <div class="sbc-badge nvidia-b">NVIDIA Jetson</div>
+              <div class="sbc-tagline">🤖 AI & Robotics Powerhouse</div>
+              <div class="sbc-facts">
+                <div class="sbc-fact"><span>Processor</span><span>ARM SoCs + NVIDIA GPU</span></div>
+                <div class="sbc-fact"><span>Use Case</span><span>Deep learning, edge AI, robotics</span></div>
+                <div class="sbc-fact"><span>Software</span><span>JetPack SDK, CUDA, TensorRT</span></div>
+                <div class="sbc-fact"><span>Examples</span><span>Nano, Xavier, Orin, TX1</span></div>
+              </div>
+              <div class="sbc-tradeoff">
+                <div class="sbc-good">✅ Excellent AI / ML performance</div>
+                <div class="sbc-bad">❌ Most expensive, power-hungry</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sbc-card rpi">
+            <div class="sbc-img-wrap">
+              <img src="https://dfimg.dfrobot.com/nobody/wiki/adebb625b80d48abc4038f5d30b4cb2f.jpg" alt="Raspberry Pi" onerror="this.style.display='none'" />
+            </div>
+            <div class="sbc-body">
+              <div class="sbc-badge rpi-b">Raspberry Pi</div>
+              <div class="sbc-tagline">🎓 Affordable Education Standard</div>
+              <div class="sbc-facts">
+                <div class="sbc-fact"><span>Processor</span><span>Broadcom SoCs (BCM2711, BCM2712)</span></div>
+                <div class="sbc-fact"><span>Use Case</span><span>Learning, DIY, basic computing</span></div>
+                <div class="sbc-fact"><span>Software</span><span>Raspberry Pi OS (Debian-based)</span></div>
+                <div class="sbc-fact"><span>Examples</span><span>Model B+, Pi 4, Pi 5</span></div>
+              </div>
+              <div class="sbc-tradeoff">
+                <div class="sbc-good">✅ Cheap, easy, huge community</div>
+                <div class="sbc-bad">❌ Low GPU — not for heavy AI/robotics</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sbc-card rockpi">
+            <div class="sbc-img-wrap rp-placeholder">🪨<br/><small>Rock Pi</small></div>
+            <div class="sbc-body">
+              <div class="sbc-badge rock-b">Rock Pi</div>
+              <div class="sbc-tagline">⚡ High Performance Mid-Range</div>
+              <div class="sbc-facts">
+                <div class="sbc-fact"><span>Processor</span><span>Rockchip SoCs (RK3399, RK3588)</span></div>
+                <div class="sbc-fact"><span>Use Case</span><span>Home servers, Android TV, heavy DIY</span></div>
+                <div class="sbc-fact"><span>Software</span><span>Linux distros + Android</span></div>
+                <div class="sbc-fact"><span>Examples</span><span>Rock Pi 4, Rock Pi 5</span></div>
+              </div>
+              <div class="sbc-tradeoff">
+                <div class="sbc-good">✅ Stronger CPU than Pi, cheaper than Jetson</div>
+                <div class="sbc-bad">❌ Much less community & software support</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick comparison table -->
+        <div class="quick-table-wrap">
+          <h4 class="qt-title">Quick Comparison</h4>
+          <div class="quick-table">
+            <div class="qt-head">
+              <div></div>
+              <div>NVIDIA Jetson</div>
+              <div>Raspberry Pi</div>
+              <div>Rock Pi</div>
+            </div>
+            <div class="qt-row">
+              <div class="qt-label">Price</div>
+              <div class="qt-cell high">💸💸💸 High</div>
+              <div class="qt-cell low">💸 Low</div>
+              <div class="qt-cell mid">💸💸 Mid</div>
+            </div>
+            <div class="qt-row">
+              <div class="qt-label">AI Performance</div>
+              <div class="qt-cell high">🌟🌟🌟</div>
+              <div class="qt-cell low">🌟</div>
+              <div class="qt-cell mid">🌟🌟</div>
+            </div>
+            <div class="qt-row">
+              <div class="qt-label">Community</div>
+              <div class="qt-cell mid">🌟🌟</div>
+              <div class="qt-cell high">🌟🌟🌟</div>
+              <div class="qt-cell low">🌟</div>
+            </div>
+            <div class="qt-row">
+              <div class="qt-label">CPU Power</div>
+              <div class="qt-cell high">🔥🔥🔥</div>
+              <div class="qt-cell low">🔥</div>
+              <div class="qt-cell mid">🔥🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>9700/42 · Microprocessors & Interfacing · Visual Study Guide</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
