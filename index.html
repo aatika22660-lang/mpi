@@ -1,553 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9700/42 — Microprocessors & Interfacing</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EE353 — Microprocessors & Interfacing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-dots"></div>
-    <div class="hero-inner">
-      <span class="course-tag">EE353 - T</span>
-      <h1>Microprocessors<br/><em>&amp; Interfacing</em></h1>
-      <p class="hero-sub">Your visual study guide — architecture, components, types & platforms</p>
-      <nav class="hero-nav">
-        <a href="#lecture1" class="nav-pill">⚡ Lecture 1</a>
-        <a href="#lecture2" class="nav-pill">🔧 Lecture 2</a>
-        <a href="#platforms" class="nav-pill">🖥 Platforms</a>
-      </nav>
+<!-- ████ HERO ████ -->
+<header class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="badge">EE353 - T</span>
+      <h1>Micro<em>processors</em><br>&amp; Interfacing</h1>
+      <p class="sub">Architecture · Classification · Platforms</p>
+      <div class="nav-pills">
+        <a href="#lec1" class="pill">🖥 MCU Basics</a>
+        <a href="#types" class="pill">🗂 Types</a>
+        <a href="#lec2" class="pill">⚡ Microprocessor</a>
+        <a href="#sbc" class="pill">🍓 Platforms</a>
+      </div>
     </div>
-    <div class="hero-chip">
-      <img src="https://c8.alamy.com/comp/2AFJX7K/computer-microprocessor-chip-on-circuit-board-2AFJX7K.jpg" alt="Microprocessor chip" />
+    <!-- Animated chip illustration -->
+    <div class="hero-chip-wrap">
+      <svg class="chip-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- PCB background -->
+        <rect width="280" height="280" rx="20" fill="#1a1a2e" opacity=".06"/>
+        <!-- Chip body -->
+        <rect x="70" y="70" width="140" height="140" rx="14" fill="#fff" stroke="#ddd" stroke-width="2.5"/>
+        <!-- Die -->
+        <rect x="90" y="90" width="100" height="100" rx="8" fill="#ead6ff"/>
+        <!-- Grid on die -->
+        <line x1="90" y1="113" x2="190" y2="113" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="90" y1="130" x2="190" y2="130" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="90" y1="147" x2="190" y2="147" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="90" y1="164" x2="190" y2="164" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="113" y1="90" x2="113" y2="190" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="130" y1="90" x2="130" y2="190" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="147" y1="90" x2="147" y2="190" stroke="#d4b8f0" stroke-width="1.2"/>
+        <line x1="164" y1="90" x2="164" y2="190" stroke="#d4b8f0" stroke-width="1.2"/>
+        <!-- CPU label -->
+        <text x="140" y="137" text-anchor="middle" font-family="Sora" font-size="13" font-weight="800" fill="#7c3aed">CPU</text>
+        <text x="140" y="152" text-anchor="middle" font-family="Sora" font-size="7" fill="#a78bfa">MICROCONTROLLER</text>
+        <!-- Left pins -->
+        <rect x="48" y="87" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <rect x="48" y="103" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <rect x="48" y="119" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <rect x="48" y="135" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <rect x="48" y="151" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <rect x="48" y="167" width="22" height="8" rx="3" fill="#ffd6e7"/>
+        <!-- Right pins -->
+        <rect x="210" y="87" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <rect x="210" y="103" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <rect x="210" y="119" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <rect x="210" y="135" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <rect x="210" y="151" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <rect x="210" y="167" width="22" height="8" rx="3" fill="#d6f0ff"/>
+        <!-- Top pins -->
+        <rect x="87" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <rect x="103" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <rect x="119" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <rect x="135" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <rect x="151" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <rect x="167" y="48" width="8" height="22" rx="3" fill="#d6ffe8"/>
+        <!-- Bottom pins -->
+        <rect x="87" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <rect x="103" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <rect x="119" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <rect x="135" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <rect x="151" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <rect x="167" y="210" width="8" height="22" rx="3" fill="#fff3d6"/>
+        <!-- Pulse lines -->
+        <polyline points="10,140 25,140 30,110 38,165 43,140 48,140" fill="none" stroke="#ffd6e7" stroke-width="2" opacity=".8"/>
+        <polyline points="232,140 237,140 244,115 252,165 258,130 265,140 280,140" fill="none" stroke="#d6f0ff" stroke-width="2" opacity=".8"/>
+      </svg>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
+<main>
 
-    <!-- ── LECTURE 1 ── -->
-    <section id="lecture1" class="section">
-      <div class="section-label-wrap">
-        <span class="section-label mint">Lecture 1</span>
-        <h2>Introduction to Microcontrollers</h2>
+<!-- ████ LECTURE 1 ████ -->
+<section id="lec1" class="section">
+  <div class="sec-head">
+    <span class="lbl purple">Lecture 1</span>
+    <h2>Introduction to <em>Microcontrollers</em></h2>
+    <p class="sec-desc">A microcontroller (MCU) is a compact integrated circuit — a <strong>"tiny computer"</strong> — that bridges the physical world and the digital world.</p>
+  </div>
+
+  <!-- INPUT → PROCESS → OUTPUT flow -->
+  <div class="flow-row">
+    <div class="flow-step" style="--fc:#ffd6e7">
+      <div class="flow-icon">📥</div>
+      <div class="flow-name">Input</div>
+      <div class="flow-eg">Sensors · Buttons · Signals</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="--fc:#ead6ff">
+      <div class="flow-icon">⚙️</div>
+      <div class="flow-name">Process</div>
+      <div class="flow-eg">CPU runs your code</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="--fc:#d6f0ff">
+      <div class="flow-icon">📤</div>
+      <div class="flow-name">Output</div>
+      <div class="flow-eg">Motors · Displays · LEDs</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="--fc:#d6ffe8">
+      <div class="flow-icon">📡</div>
+      <div class="flow-name">Communicate</div>
+      <div class="flow-eg">Serial · Wireless · USB</div>
+    </div>
+  </div>
+
+  <!-- MCU ANATOMY DIAGRAM -->
+  <div class="card">
+    <h3 class="card-title">🔬 Anatomy of a Microcontroller</h3>
+    <p class="card-sub">Every block on a single silicon chip — here's what each one does:</p>
+
+    <div class="anatomy-diagram">
+      <!-- The chip outline -->
+      <svg class="full-diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- ── Chip body ── -->
+        <rect x="200" y="40" width="400" height="420" rx="22" fill="#fdf8ff" stroke="#e0d0f8" stroke-width="3"/>
+        <text x="400" y="30" text-anchor="middle" font-family="Sora" font-size="11" fill="#bbb" letter-spacing="3">M I C R O C O N T R O L L E R   C H I P</text>
+
+        <!-- ── CPU (centre) ── -->
+        <rect x="300" y="170" width="200" height="110" rx="14" fill="#ead6ff" stroke="#c084fc" stroke-width="2.5"/>
+        <text x="400" y="218" text-anchor="middle" font-family="Sora" font-size="17" font-weight="800" fill="#7c3aed">CPU</text>
+        <text x="400" y="238" text-anchor="middle" font-family="Sora" font-size="9" fill="#a78bfa">fetch  ·  decode  ·  execute</text>
+        <text x="400" y="254" text-anchor="middle" font-family="Sora" font-size="9" fill="#a78bfa">4-bit  →  128-bit range</text>
+
+        <!-- ── ROM / Flash (top-left) ── -->
+        <rect x="222" y="58" width="130" height="60" rx="10" fill="#d6ffe8" stroke="#86efac" stroke-width="2"/>
+        <text x="287" y="84" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#15803d">ROM / Flash</text>
+        <text x="287" y="100" text-anchor="middle" font-family="Sora" font-size="9" fill="#166534">Program storage</text>
+        <text x="287" y="113" text-anchor="middle" font-family="Sora" font-size="8" fill="#16a34a">(non-volatile)</text>
+        <!-- line to CPU -->
+        <line x1="287" y1="118" x2="340" y2="170" stroke="#86efac" stroke-width="2" stroke-dasharray="5,4"/>
+
+        <!-- ── RAM (top-right) ── -->
+        <rect x="448" y="58" width="130" height="60" rx="10" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="2"/>
+        <text x="513" y="84" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#1e40af">RAM</text>
+        <text x="513" y="100" text-anchor="middle" font-family="Sora" font-size="9" fill="#2563eb">Temporary data</text>
+        <text x="513" y="113" text-anchor="middle" font-family="Sora" font-size="8" fill="#3b82f6">(volatile)</text>
+        <!-- line to CPU -->
+        <line x1="513" y1="118" x2="460" y2="170" stroke="#7dd3fc" stroke-width="2" stroke-dasharray="5,4"/>
+
+        <!-- ── Timers (left-mid) ── -->
+        <rect x="222" y="188" width="60" height="50" rx="10" fill="#fff3d6" stroke="#fbbf24" stroke-width="2"/>
+        <text x="252" y="210" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#92400e">⏱</text>
+        <text x="252" y="224" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#92400e">Timers</text>
+        <line x1="282" y1="213" x2="300" y2="213" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4,3"/>
+
+        <!-- ── Interrupts (right-mid) ── -->
+        <rect x="518" y="188" width="60" height="50" rx="10" fill="#ffd6e7" stroke="#f9a8d4" stroke-width="2"/>
+        <text x="548" y="210" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#9f1239">⚡</text>
+        <text x="548" y="224" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#9f1239">Interrupt</text>
+        <line x1="518" y1="213" x2="500" y2="213" stroke="#f9a8d4" stroke-width="1.8" stroke-dasharray="4,3"/>
+
+        <!-- ── Serial Port (left-low) ── -->
+        <rect x="222" y="300" width="70" height="50" rx="10" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="2"/>
+        <text x="257" y="322" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#1e40af">📡</text>
+        <text x="257" y="336" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#2563eb">Serial</text>
+        <line x1="292" y1="325" x2="340" y2="280" stroke="#7dd3fc" stroke-width="1.8" stroke-dasharray="4,3"/>
+
+        <!-- ── ADC (bottom-left) ── -->
+        <rect x="240" y="390" width="110" height="55" rx="10" fill="#ffd6e7" stroke="#f9a8d4" stroke-width="2"/>
+        <text x="295" y="414" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#9f1239">ADC</text>
+        <text x="295" y="430" text-anchor="middle" font-family="Sora" font-size="9" fill="#be185d">Analog → Digital</text>
+        <text x="295" y="442" text-anchor="middle" font-family="Sora" font-size="8" fill="#e11d48">(e.g. temperature)</text>
+        <line x1="295" y1="390" x2="350" y2="280" stroke="#f9a8d4" stroke-width="2" stroke-dasharray="5,4"/>
+
+        <!-- ── DAC (bottom-right) ── -->
+        <rect x="450" y="390" width="110" height="55" rx="10" fill="#fff3d6" stroke="#fcd34d" stroke-width="2"/>
+        <text x="505" y="414" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#92400e">DAC</text>
+        <text x="505" y="430" text-anchor="middle" font-family="Sora" font-size="9" fill="#b45309">Digital → Analog</text>
+        <text x="505" y="442" text-anchor="middle" font-family="Sora" font-size="8" fill="#d97706">(e.g. DC motor)</text>
+        <line x1="505" y1="390" x2="450" y2="280" stroke="#fcd34d" stroke-width="2" stroke-dasharray="5,4"/>
+
+        <!-- ── I/O Ports (right-low) ── -->
+        <rect x="518" y="300" width="65" height="50" rx="10" fill="#d6ffe8" stroke="#86efac" stroke-width="2"/>
+        <text x="550" y="322" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#166534">🔌</text>
+        <text x="550" y="336" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#15803d">I/O Ports</text>
+        <line x1="518" y1="325" x2="500" y2="280" stroke="#86efac" stroke-width="1.8" stroke-dasharray="4,3"/>
+
+        <!-- ── External Left labels ── -->
+        <rect x="20" y="155" width="90" height="30" rx="8" fill="#ffd6e7"/>
+        <text x="65" y="174" text-anchor="middle" font-family="Sora" font-size="10" font-weight="600" fill="#9f1239">Sensors / Input</text>
+        <line x1="110" y1="170" x2="200" y2="213" stroke="#f9a8d4" stroke-width="1.5"/>
+
+        <rect x="20" y="210" width="90" height="30" rx="8" fill="#fff3d6"/>
+        <text x="65" y="229" text-anchor="middle" font-family="Sora" font-size="10" font-weight="600" fill="#92400e">LCD / Printer</text>
+        <line x1="110" y1="225" x2="200" y2="325" stroke="#fbbf24" stroke-width="1.5"/>
+
+        <!-- ── External Right labels ── -->
+        <rect x="690" y="155" width="90" height="30" rx="8" fill="#d6ffe8"/>
+        <text x="735" y="174" text-anchor="middle" font-family="Sora" font-size="10" font-weight="600" fill="#166534">DC Motor / Out</text>
+        <line x1="690" y1="170" x2="600" y2="213" stroke="#86efac" stroke-width="1.5"/>
+
+        <rect x="690" y="210" width="90" height="30" rx="8" fill="#d6f0ff"/>
+        <text x="735" y="229" text-anchor="middle" font-family="Sora" font-size="10" font-weight="600" fill="#1e40af">Other Devices</text>
+        <line x1="690" y1="225" x2="600" y2="325" stroke="#7dd3fc" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="leg"><span class="dot" style="background:#ead6ff"></span>CPU — the brain</div>
+      <div class="leg"><span class="dot" style="background:#d6ffe8"></span>ROM/Flash — program</div>
+      <div class="leg"><span class="dot" style="background:#d6f0ff"></span>RAM — temp data</div>
+      <div class="leg"><span class="dot" style="background:#ffd6e7"></span>ADC — analog in</div>
+      <div class="leg"><span class="dot" style="background:#fff3d6"></span>DAC — analog out</div>
+      <div class="leg"><span class="dot" style="background:#ffd6e7"></span>Timers & Interrupts</div>
+    </div>
+  </div>
+
+  <!-- ADC vs DAC visual explainer -->
+  <div class="card">
+    <h3 class="card-title">🔄 ADC vs DAC — How Signal Conversion Works</h3>
+    <div class="two-col">
+      <div class="half-card" style="--hc:#ffd6e7">
+        <div class="half-title">ADC — Analog to Digital</div>
+        <!-- Analog wave to digital bars -->
+        <svg viewBox="0 0 260 90" style="width:100%;margin:12px 0">
+          <text x="5" y="14" font-family="Sora" font-size="9" fill="#be185d" font-weight="600">Real World (analog)</text>
+          <!-- Smooth wave -->
+          <path d="M5 65 Q25 20 45 65 Q65 20 85 65 Q105 20 125 65" stroke="#e85d87" stroke-width="2.5" fill="none"/>
+          <!-- Arrow -->
+          <polygon points="138,48 158,42 158,54" fill="#e85d87"/>
+          <line x1="128" y1="48" x2="155" y2="48" stroke="#e85d87" stroke-width="2"/>
+          <!-- Digital bars -->
+          <text x="165" y="14" font-family="Sora" font-size="9" fill="#be185d" font-weight="600">CPU reads (digital)</text>
+          <rect x="165" y="25" width="12" height="42" rx="2" fill="#e85d87" opacity=".9"/>
+          <rect x="181" y="38" width="12" height="29" rx="2" fill="#e85d87" opacity=".7"/>
+          <rect x="197" y="18" width="12" height="49" rx="2" fill="#e85d87" opacity=".95"/>
+          <rect x="213" y="32" width="12" height="35" rx="2" fill="#e85d87" opacity=".75"/>
+          <rect x="229" y="44" width="12" height="23" rx="2" fill="#e85d87" opacity=".65"/>
+          <rect x="245" y="28" width="12" height="39" rx="2" fill="#e85d87" opacity=".85"/>
+          <line x1="5" y1="75" x2="255" y2="75" stroke="#ddd" stroke-width="1"/>
+        </svg>
+        <p>Converts real-world signals like <strong>temperature or light</strong> into numbers the CPU can process.</p>
       </div>
+      <div class="half-card" style="--hc:#fff3d6">
+        <div class="half-title">DAC — Digital to Analog</div>
+        <!-- Digital bars to wave -->
+        <svg viewBox="0 0 260 90" style="width:100%;margin:12px 0">
+          <text x="5" y="14" font-family="Sora" font-size="9" fill="#b45309" font-weight="600">CPU output (digital)</text>
+          <rect x="5" y="25" width="12" height="42" rx="2" fill="#f0a83c" opacity=".9"/>
+          <rect x="21" y="38" width="12" height="29" rx="2" fill="#f0a83c" opacity=".7"/>
+          <rect x="37" y="18" width="12" height="49" rx="2" fill="#f0a83c" opacity=".95"/>
+          <rect x="53" y="32" width="12" height="35" rx="2" fill="#f0a83c" opacity=".75"/>
+          <rect x="69" y="44" width="12" height="23" rx="2" fill="#f0a83c" opacity=".65"/>
+          <rect x="85" y="28" width="12" height="39" rx="2" fill="#f0a83c" opacity=".85"/>
+          <!-- Arrow -->
+          <polygon points="103,48 123,42 123,54" fill="#f0a83c"/>
+          <line x1="100" y1="48" x2="120" y2="48" stroke="#f0a83c" stroke-width="2"/>
+          <text x="132" y="14" font-family="Sora" font-size="9" fill="#b45309" font-weight="600">Device control (analog)</text>
+          <!-- Smooth wave -->
+          <path d="M132 65 Q152 20 172 65 Q192 20 212 65 Q232 20 252 65" stroke="#f0a83c" stroke-width="2.5" fill="none"/>
+          <line x1="5" y1="75" x2="255" y2="75" stroke="#ddd" stroke-width="1"/>
+        </svg>
+        <p>Converts CPU numbers back into <strong>analog signals</strong> to control devices like DC motors or speakers.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- What is a microcontroller -->
-      <div class="hero-card" style="--hc:#e0f7ee">
-        <div class="hero-card-text">
-          <h3>What is a Microcontroller?</h3>
-          <p>A <strong>microcontroller (MCU / µC)</strong> is a compact integrated circuit designed to govern a specific operation in an embedded system — essentially a <em>"tiny computer"</em> optimised to run a single program.</p>
-          <div class="tag-row">
-            <span class="tag">🔌 Input</span>
-            <span class="tag">⚙️ Process</span>
-            <span class="tag">📤 Output</span>
-            <span class="tag">📡 Communicate</span>
-          </div>
-          <p class="caption">Bridges the physical world ↔ digital computer world</p>
+<!-- ████ MCU TYPES ████ -->
+<section id="types" class="section">
+  <div class="sec-head">
+    <span class="lbl pink">Classification</span>
+    <h2>Types of <em>Microcontrollers</em></h2>
+  </div>
+
+  <!-- 1. Bit width bar chart -->
+  <div class="card">
+    <h3 class="card-title">📊 1 · Classification by Bit Width</h3>
+    <p class="card-sub">The more bits, the more data processed at once — and the more complex the tasks it can handle.</p>
+    <div class="bit-chart">
+      <div class="bit-row">
+        <span class="bit-label">8-bit</span>
+        <div class="bit-track">
+          <div class="bit-fill" style="width:35%;background:#d6ffe8;border-right:3px solid #86efac"></div>
         </div>
-        <div class="hero-card-img">
-          <img src="https://www.arduino.cc/wiki/static/dd8a4e8f4d07cf7e24bc2c1d66c68427/a89e5/arduinoUno.jpg" alt="Arduino microcontroller" onerror="this.parentElement.style.display='none'" />
+        <div class="bit-info"><strong>Intel 8031, 8051</strong> — simple logic, low power</div>
+      </div>
+      <div class="bit-row">
+        <span class="bit-label">16-bit</span>
+        <div class="bit-track">
+          <div class="bit-fill" style="width:62%;background:#d6f0ff;border-right:3px solid #7dd3fc"></div>
+        </div>
+        <div class="bit-info"><strong>Intel 8096</strong> — greater accuracy & performance</div>
+      </div>
+      <div class="bit-row">
+        <span class="bit-label">32-bit</span>
+        <div class="bit-track">
+          <div class="bit-fill" style="width:92%;background:#ead6ff;border-right:3px solid #c084fc"></div>
+        </div>
+        <div class="bit-info"><strong>ARM Cortex-M, PIC32</strong> — complex logic, high-end</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Memory structure -->
+  <div class="card">
+    <h3 class="card-title">🧠 2 · Classification by Memory Structure</h3>
+    <div class="two-col">
+      <div class="half-card" style="--hc:#fff3d6">
+        <svg viewBox="0 0 220 130" style="width:100%;margin-bottom:12px">
+          <!-- Chip missing some blocks -->
+          <rect x="30" y="10" width="160" height="100" rx="12" fill="white" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6,4"/>
+          <rect x="50" y="25" width="55" height="35" rx="8" fill="#ead6ff"/>
+          <text x="77" y="47" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#7c3aed">CPU</text>
+          <!-- Missing RAM - shown empty -->
+          <rect x="120" y="25" width="55" height="35" rx="8" fill="#f5f5f5" stroke="#ddd" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="147" y="40" text-anchor="middle" font-family="Sora" font-size="8" fill="#bbb">RAM</text>
+          <text x="147" y="52" text-anchor="middle" font-family="Sora" font-size="7" fill="#ccc">external</text>
+          <!-- Arrow pointing outside -->
+          <line x1="155" y1="60" x2="185" y2="85" stroke="#fbbf24" stroke-width="2"/>
+          <polygon points="180,78 192,90 186,82" fill="#fbbf24"/>
+          <text x="155" y="110" text-anchor="middle" font-family="Sora" font-size="9" fill="#92400e" font-weight="600">External memory needed</text>
+        </svg>
+        <h5>External Memory MCU</h5>
+        <p>Not all blocks on one chip. Needs external memory modules connected to work fully.</p>
+      </div>
+      <div class="half-card" style="--hc:#d6ffe8">
+        <svg viewBox="0 0 220 130" style="width:100%;margin-bottom:12px">
+          <rect x="15" y="10" width="190" height="110" rx="12" fill="white" stroke="#86efac" stroke-width="2"/>
+          <rect x="25" y="20" width="50" height="30" rx="7" fill="#ead6ff"/>
+          <text x="50" y="39" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#7c3aed">CPU</text>
+          <rect x="83" y="20" width="50" height="30" rx="7" fill="#d6f0ff"/>
+          <text x="108" y="39" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#1e40af">RAM</text>
+          <rect x="141" y="20" width="50" height="30" rx="7" fill="#d6ffe8"/>
+          <text x="166" y="39" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#15803d">ROM</text>
+          <rect x="25" y="60" width="80" height="30" rx="7" fill="#ffd6e7"/>
+          <text x="65" y="79" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#9f1239">ADC / DAC</text>
+          <rect x="115" y="60" width="76" height="30" rx="7" fill="#fff3d6"/>
+          <text x="153" y="79" text-anchor="middle" font-family="Sora" font-size="8" font-weight="700" fill="#92400e">I/O Ports</text>
+          <text x="108" y="115" text-anchor="middle" font-family="Sora" font-size="9" fill="#166534" font-weight="700">✅ Everything on one chip!</text>
+        </svg>
+        <h5>Embedded Memory MCU ✅ Most Common</h5>
+        <p>CPU + RAM + ROM + I/O all integrated on <strong>one silicon chip</strong>. No external parts needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. RISC vs CISC -->
+  <div class="card">
+    <h3 class="card-title">⚖️ 3 · Classification by Instruction Set</h3>
+    <div class="risc-cisc">
+      <div class="rc-side" style="--rc:#ffd6e7">
+        <div class="rc-name">CISC</div>
+        <div class="rc-full">Complex Instruction Set Computer</div>
+        <!-- CISC visual: one big block -->
+        <svg viewBox="0 0 200 80" style="width:100%;margin:14px 0">
+          <text x="100" y="12" text-anchor="middle" font-family="Sora" font-size="9" fill="#9f1239">Program = fewer, larger instructions</text>
+          <rect x="10" y="20" width="175" height="36" rx="6" fill="#e85d87" opacity=".9"/>
+          <text x="97" y="40" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="white">ONE BIG INSTRUCTION</text>
+          <text x="97" y="53" text-anchor="middle" font-family="Sora" font-size="8" fill="white">(arithmetic + store + read = all in 1)</text>
+          <text x="100" y="72" text-anchor="middle" font-family="Sora" font-size="8" fill="#be185d">⏱⏱⏱ Multiple clock cycles</text>
+        </svg>
+        <div class="rc-pros">✅ Shorter code (fewer lines)</div>
+        <div class="rc-cons">❌ Slower — multi-cycle per instruction</div>
+        <div class="rc-tag">🖥️ Used in: x86 / Desktops</div>
+      </div>
+      <div class="rc-vs">VS</div>
+      <div class="rc-side" style="--rc:#d6f0ff">
+        <div class="rc-name">RISC</div>
+        <div class="rc-full">Reduced Instruction Set Computer</div>
+        <!-- RISC visual: many small blocks with pipeline -->
+        <svg viewBox="0 0 200 80" style="width:100%;margin:14px 0">
+          <text x="100" y="12" text-anchor="middle" font-family="Sora" font-size="9" fill="#1e40af">Program = many simple instructions</text>
+          <rect x="10" y="20" width="44" height="32" rx="5" fill="#5ba8d4"/>
+          <rect x="59" y="20" width="44" height="32" rx="5" fill="#5ba8d4"/>
+          <rect x="108" y="20" width="44" height="32" rx="5" fill="#5ba8d4"/>
+          <rect x="157" y="20" width="33" height="32" rx="5" fill="#5ba8d4" opacity=".6"/>
+          <text x="32" y="40" text-anchor="middle" font-family="Sora" font-size="7" fill="white" font-weight="700">SIMPLE</text>
+          <text x="81" y="40" text-anchor="middle" font-family="Sora" font-size="7" fill="white" font-weight="700">SIMPLE</text>
+          <text x="130" y="40" text-anchor="middle" font-family="Sora" font-size="7" fill="white" font-weight="700">SIMPLE</text>
+          <text x="173" y="40" text-anchor="middle" font-family="Sora" font-size="7" fill="white" font-weight="700">…</text>
+          <text x="100" y="72" text-anchor="middle" font-family="Sora" font-size="8" fill="#2563eb">⏱ Each = 1 clock cycle · Pipelining!</text>
+        </svg>
+        <div class="rc-pros">✅ Fast — 1 clock cycle each</div>
+        <div class="rc-cons">❌ More code lines → more RAM needed</div>
+        <div class="rc-tag">📱 Used in: ARM / Phones & Embedded</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Architecture -->
+  <div class="card">
+    <h3 class="card-title">🏗️ 4 · Classification by Architecture</h3>
+    <div class="two-col">
+      <!-- Von Neumann -->
+      <div class="half-card" style="--hc:#ead6ff">
+        <h5>🏛 Princeton / Von Neumann</h5>
+        <svg viewBox="0 0 240 140" style="width:100%;margin:12px 0">
+          <!-- CPU -->
+          <rect x="85" y="50" width="70" height="50" rx="10" fill="#ead6ff" stroke="#c084fc" stroke-width="2"/>
+          <text x="120" y="78" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#7c3aed">CPU</text>
+          <!-- Shared memory -->
+          <rect x="15" y="15" width="70" height="35" rx="8" fill="#d6ffe8" stroke="#86efac" stroke-width="1.8"/>
+          <text x="50" y="28" text-anchor="middle" font-family="Sora" font-size="8" font-weight="600" fill="#166534">Program</text>
+          <text x="50" y="40" text-anchor="middle" font-family="Sora" font-size="8" fill="#15803d">Memory</text>
+          <rect x="155" y="15" width="70" height="35" rx="8" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="1.8"/>
+          <text x="190" y="28" text-anchor="middle" font-family="Sora" font-size="8" font-weight="600" fill="#1e40af">Data</text>
+          <text x="190" y="40" text-anchor="middle" font-family="Sora" font-size="8" fill="#2563eb">Memory</text>
+          <!-- Single shared bus -->
+          <line x1="85" y1="65" x2="50" y2="50" stroke="#a855f7" stroke-width="2.5"/>
+          <line x1="155" y1="65" x2="190" y2="50" stroke="#a855f7" stroke-width="2.5"/>
+          <rect x="65" y="105" width="110" height="22" rx="6" fill="#a855f7" opacity=".2"/>
+          <text x="120" y="120" text-anchor="middle" font-family="Sora" font-size="8.5" font-weight="700" fill="#7c3aed">SHARED BUS</text>
+          <line x1="90" y1="100" x2="90" y2="127" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <line x1="150" y1="100" x2="150" y2="127" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,2"/>
+        </svg>
+        <p>One shared bus & memory space for both instructions and data. Simpler but can create a <strong>bottleneck</strong>.</p>
+      </div>
+      <!-- Harvard -->
+      <div class="half-card" style="--hc:#d6f0ff">
+        <h5>🔬 Harvard Architecture</h5>
+        <svg viewBox="0 0 240 140" style="width:100%;margin:12px 0">
+          <!-- CPU -->
+          <rect x="85" y="55" width="70" height="50" rx="10" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="2"/>
+          <text x="120" y="83" text-anchor="middle" font-family="Sora" font-size="11" font-weight="700" fill="#1e40af">CPU</text>
+          <!-- Program memory -->
+          <rect x="10" y="10" width="75" height="35" rx="8" fill="#d6ffe8" stroke="#86efac" stroke-width="1.8"/>
+          <text x="47" y="24" text-anchor="middle" font-family="Sora" font-size="8" font-weight="600" fill="#166534">Program</text>
+          <text x="47" y="37" text-anchor="middle" font-family="Sora" font-size="7" fill="#15803d">Memory</text>
+          <!-- Data memory -->
+          <rect x="155" y="10" width="75" height="35" rx="8" fill="#fff3d6" stroke="#fbbf24" stroke-width="1.8"/>
+          <text x="192" y="24" text-anchor="middle" font-family="Sora" font-size="8" font-weight="600" fill="#92400e">Data</text>
+          <text x="192" y="37" text-anchor="middle" font-family="Sora" font-size="7" fill="#b45309">Memory</text>
+          <!-- Separate buses - GREEN instruction bus -->
+          <line x1="90" y1="68" x2="55" y2="45" stroke="#22c55e" stroke-width="2.5"/>
+          <text x="42" y="62" font-family="Sora" font-size="7" fill="#166534" font-weight="600">instruction</text>
+          <text x="47" y="72" font-family="Sora" font-size="7" fill="#166534" font-weight="600">bus</text>
+          <!-- ORANGE data bus -->
+          <line x1="150" y1="68" x2="182" y2="45" stroke="#f59e0b" stroke-width="2.5"/>
+          <text x="165" y="62" font-family="Sora" font-size="7" fill="#92400e" font-weight="600">data</text>
+          <text x="165" y="72" font-family="Sora" font-size="7" fill="#92400e" font-weight="600">bus</text>
+          <!-- Simultaneous label -->
+          <text x="120" y="128" text-anchor="middle" font-family="Sora" font-size="8.5" font-weight="700" fill="#1e40af">⚡ Fetch BOTH simultaneously!</text>
+        </svg>
+        <p>Separate physical buses for instructions and data — CPU can fetch both <strong>at the same time</strong> for faster performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MCU Families -->
+  <div class="card">
+    <h3 class="card-title">🏭 Microcontroller Families</h3>
+    <div class="family-row">
+      <div class="fam" style="--f:#ffd6e7">
+        <div class="fam-n">8051</div>
+        <div class="fam-by">by Intel</div>
+        <ul>
+          <li>8051 — standard</li>
+          <li>8052 — 256B RAM + 3 timers</li>
+          <li>8031 — ROM-less</li>
+        </ul>
+        <div class="fam-chip">NV-RAM · UV-EPROM · Flash</div>
+      </div>
+      <div class="fam" style="--f:#d6f0ff">
+        <div class="fam-n">PIC</div>
+        <div class="fam-by">by Microchip Tech.</div>
+        <ul>
+          <li>Solitary chip MCU</li>
+          <li>Dominant 8-bit market</li>
+          <li>Low cost, serial programming</li>
+        </ul>
+        <div class="fam-chip">Large community · Affordable</div>
+      </div>
+      <div class="fam" style="--f:#d6ffe8">
+        <div class="fam-n">AVR</div>
+        <div class="fam-by">by Atmel · 1996</div>
+        <ul>
+          <li>Harvard architecture</li>
+          <li>8-bit RISC chip</li>
+          <li>First with on-chip Flash</li>
+        </ul>
+        <div class="fam-chip">Easy reprogramming · Flexible</div>
+      </div>
+      <div class="fam" style="--f:#ead6ff">
+        <div class="fam-n">ARM</div>
+        <div class="fam-by">Acorn · 1980</div>
+        <ul>
+          <li>32-bit RISC</li>
+          <li>Licenses — doesn't fabricate</li>
+          <li>No on-board Flash typically</li>
+        </ul>
+        <div class="fam-chip">Powers most smartphones</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ LECTURE 2 ████ -->
+<section id="lec2" class="section">
+  <div class="sec-head">
+    <span class="lbl blue">Lecture 2</span>
+    <h2>What is a <em>Microprocessor?</em></h2>
+    <p class="sec-desc">An IC that functions as a complete CPU on a single chip. Unlike an MCU, it needs external RAM, ROM and peripherals.</p>
+  </div>
+
+  <!-- MPU Architecture Diagram -->
+  <div class="card">
+    <h3 class="card-title">🔬 Microprocessor Internal Architecture</h3>
+    <svg class="full-diagram" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+      <!-- CPU Boundary -->
+      <rect x="220" y="30" width="360" height="280" rx="18" fill="#fdf8ff" stroke="#c084fc" stroke-width="2.5"/>
+      <text x="400" y="22" text-anchor="middle" font-family="Sora" font-size="10" fill="#c084fc" letter-spacing="3">C E N T R A L   P R O C E S S I N G   U N I T</text>
+
+      <!-- ALU -->
+      <rect x="245" y="55" width="130" height="100" rx="12" fill="#ffd6e7" stroke="#f9a8d4" stroke-width="2"/>
+      <text x="310" y="98" text-anchor="middle" font-family="Sora" font-size="16" font-weight="800" fill="#9f1239">ALU</text>
+      <text x="310" y="116" text-anchor="middle" font-family="Sora" font-size="8.5" fill="#be185d">Arithmetic &amp;</text>
+      <text x="310" y="129" text-anchor="middle" font-family="Sora" font-size="8.5" fill="#be185d">Logical Operations</text>
+      <text x="310" y="143" text-anchor="middle" font-family="Sora" font-size="8" fill="#e11d48">+  −  ×  AND  OR  NOT</text>
+
+      <!-- Control Unit -->
+      <rect x="425" y="55" width="130" height="100" rx="12" fill="#d6ffe8" stroke="#86efac" stroke-width="2"/>
+      <text x="490" y="98" text-anchor="middle" font-family="Sora" font-size="16" font-weight="800" fill="#166534">CU</text>
+      <text x="490" y="116" text-anchor="middle" font-family="Sora" font-size="8.5" fill="#15803d">Control Unit</text>
+      <text x="490" y="130" text-anchor="middle" font-family="Sora" font-size="8.5" fill="#15803d">Directs data flow</text>
+      <text x="490" y="144" text-anchor="middle" font-family="Sora" font-size="8" fill="#16a34a">&amp; instruction exec.</text>
+
+      <!-- Connecting line ALU ↔ CU -->
+      <line x1="375" y1="105" x2="425" y2="105" stroke="#ddd" stroke-width="2.5"/>
+
+      <!-- Registers -->
+      <rect x="245" y="178" width="310" height="55" rx="12" fill="#fff3d6" stroke="#fbbf24" stroke-width="2"/>
+      <text x="400" y="204" text-anchor="middle" font-family="Sora" font-size="13" font-weight="700" fill="#92400e">📝  Registers</text>
+      <text x="400" y="222" text-anchor="middle" font-family="Sora" font-size="8.5" fill="#b45309">Temporary storage inside the CPU — super fast access</text>
+
+      <!-- Internal data path -->
+      <line x1="310" y1="155" x2="310" y2="178" stroke="#ddd" stroke-width="2"/>
+      <line x1="490" y1="155" x2="490" y2="178" stroke="#ddd" stroke-width="2"/>
+
+      <!-- Buses -->
+      <rect x="245" y="255" width="88" height="32" rx="9" fill="#ead6ff" stroke="#c084fc" stroke-width="1.8"/>
+      <text x="289" y="273" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#7c3aed">Data Bus</text>
+
+      <rect x="356" y="255" width="88" height="32" rx="9" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="1.8"/>
+      <text x="400" y="273" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#1e40af">Address Bus</text>
+
+      <rect x="467" y="255" width="88" height="32" rx="9" fill="#d6ffe8" stroke="#86efac" stroke-width="1.8"/>
+      <text x="511" y="273" text-anchor="middle" font-family="Sora" font-size="9" font-weight="700" fill="#166534">Control Bus</text>
+
+      <!-- Bus labels below -->
+      <text x="289" y="310" text-anchor="middle" font-family="Sora" font-size="7.5" fill="#7c3aed">transfers data</text>
+      <text x="400" y="310" text-anchor="middle" font-family="Sora" font-size="7.5" fill="#1e40af">specifies memory location</text>
+      <text x="511" y="310" text-anchor="middle" font-family="Sora" font-size="7.5" fill="#166534">manages operations</text>
+      <line x1="289" y1="287" x2="289" y2="303" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <line x1="400" y1="287" x2="400" y2="303" stroke="#7dd3fc" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <line x1="511" y1="287" x2="511" y2="303" stroke="#86efac" stroke-width="1.2" stroke-dasharray="3,2"/>
+
+      <!-- Input -->
+      <rect x="30" y="115" width="100" height="40" rx="10" fill="#ffd6e7" stroke="#f9a8d4" stroke-width="2"/>
+      <text x="80" y="138" text-anchor="middle" font-family="Sora" font-size="10" font-weight="700" fill="#9f1239">📥 Input Unit</text>
+      <line x1="130" y1="135" x2="220" y2="135" stroke="#f9a8d4" stroke-width="2.5"/>
+      <polygon points="213,130 225,135 213,140" fill="#f9a8d4"/>
+
+      <!-- Output -->
+      <rect x="670" y="115" width="100" height="40" rx="10" fill="#d6f0ff" stroke="#7dd3fc" stroke-width="2"/>
+      <text x="720" y="138" text-anchor="middle" font-family="Sora" font-size="10" font-weight="700" fill="#1e40af">📤 Output Unit</text>
+      <line x1="580" y1="135" x2="670" y2="135" stroke="#7dd3fc" stroke-width="2.5"/>
+      <polygon points="663,130 675,135 663,140" fill="#7dd3fc"/>
+
+      <!-- Memory (top) -->
+      <rect x="315" y="-8" width="170" height="36" rx="10" fill="#d6ffe8" stroke="#86efac" stroke-width="2"/>
+      <text x="400" y="13" text-anchor="middle" font-family="Sora" font-size="10" font-weight="700" fill="#166534">🗄 Memory Unit</text>
+      <line x1="400" y1="28" x2="400" y2="30" stroke="#86efac" stroke-width="2"/>
+    </svg>
+
+    <div class="bus-legend">
+      <div class="bus-item"><span class="bus-dot" style="background:#ead6ff;border:2px solid #c084fc"></span><strong>Data Bus</strong> — transfers actual data</div>
+      <div class="bus-item"><span class="bus-dot" style="background:#d6f0ff;border:2px solid #7dd3fc"></span><strong>Address Bus</strong> — specifies memory location</div>
+      <div class="bus-item"><span class="bus-dot" style="background:#d6ffe8;border:2px solid #86efac"></span><strong>Control Bus</strong> — manages read/write operations</div>
+    </div>
+  </div>
+
+  <!-- x86 vs ARM -->
+  <div class="card">
+    <h3 class="card-title">🏗 x86 vs ARM — The Two Design Philosophies</h3>
+    <div class="platform-compare">
+      <div class="plat" style="--p:#fff3d6">
+        <div class="plat-title">x86</div>
+        <div class="plat-sub">CISC Architecture</div>
+        <svg viewBox="0 0 180 90" style="width:100%;margin:10px 0">
+          <!-- Desktop illustration -->
+          <rect x="30" y="10" width="120" height="70" rx="6" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1.5"/>
+          <rect x="40" y="18" width="100" height="50" rx="4" fill="#1a1a2e" opacity=".8"/>
+          <text x="90" y="38" text-anchor="middle" font-family="Sora" font-size="8" fill="#a78bfa">x86</text>
+          <text x="90" y="50" text-anchor="middle" font-family="Sora" font-size="7" fill="#7c3aed">CISC</text>
+          <text x="90" y="62" text-anchor="middle" font-family="Sora" font-size="6" fill="#6d5a8a">high performance</text>
+          <rect x="70" y="80" width="40" height="6" rx="2" fill="#ccc"/>
+          <text x="90" y="94" text-anchor="middle" font-family="Sora" font-size="8" fill="#92400e">Desktops · Laptops</text>
+        </svg>
+        <div class="plat-bars">
+          <div class="plat-bar-row"><span>Performance</span><div class="bar-bg"><div class="bar-fill" style="width:93%;background:#f0a83c"></div></div></div>
+          <div class="plat-bar-row"><span>Efficiency</span><div class="bar-bg"><div class="bar-fill" style="width:35%;background:#f0a83c"></div></div></div>
         </div>
       </div>
-
-      <!-- Basic structure -->
-      <div class="sub-section">
-        <h3 class="sub-h">🏗️ Basic Structure of a Microcomputer</h3>
-        <div class="structure-grid">
-          <div class="str-card" style="--sc:#fde8f0">
-            <div class="str-icon">🧠</div>
-            <div class="str-label">CPU</div>
-            <div class="str-desc">Central Processing Unit — the brain</div>
-          </div>
-          <div class="str-card" style="--sc:#e0f7ee">
-            <div class="str-icon">💾</div>
-            <div class="str-label">Memory</div>
-            <div class="str-desc">ROM/Flash + RAM on same chip</div>
-          </div>
-          <div class="str-card" style="--sc:#e0eeff">
-            <div class="str-icon">🔌</div>
-            <div class="str-label">I/O Ports</div>
-            <div class="str-desc">Interface with external hardware</div>
-          </div>
-          <div class="str-card" style="--sc:#fff3d6">
-            <div class="str-icon">🔗</div>
-            <div class="str-label">Serial Ports</div>
-            <div class="str-desc">Connect to other digital devices</div>
-          </div>
-          <div class="str-card" style="--sc:#ede0ff">
-            <div class="str-icon">⏱️</div>
-            <div class="str-label">Timers</div>
-            <div class="str-desc">Count, pulse gen, frequency measurement</div>
-          </div>
-          <div class="str-card" style="--sc:#fde8f0">
-            <div class="str-icon">🔄</div>
-            <div class="str-label">ADC & DAC</div>
-            <div class="str-desc">Analog ↔ Digital conversion</div>
-          </div>
-          <div class="str-card" style="--sc:#e0f7ee">
-            <div class="str-icon">🚨</div>
-            <div class="str-label">Interrupt Control</div>
-            <div class="str-desc">Pause CPU for external events</div>
-          </div>
-          <div class="str-card" style="--sc:#e0eeff">
-            <div class="str-icon">🔩</div>
-            <div class="str-label">Special Blocks</div>
-            <div class="str-desc">Custom modules for specific tasks</div>
-          </div>
+      <div class="plat-vs">vs</div>
+      <div class="plat" style="--p:#ead6ff">
+        <div class="plat-title">ARM</div>
+        <div class="plat-sub">RISC Architecture</div>
+        <svg viewBox="0 0 180 90" style="width:100%;margin:10px 0">
+          <!-- Phone illustration -->
+          <rect x="65" y="5" width="50" height="82" rx="10" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1.5"/>
+          <rect x="70" y="14" width="40" height="58" rx="5" fill="#1a1a2e" opacity=".8"/>
+          <circle cx="90" cy="80" r="4" fill="#ccc"/>
+          <text x="90" y="34" text-anchor="middle" font-family="Sora" font-size="8" fill="#a78bfa">ARM</text>
+          <text x="90" y="46" text-anchor="middle" font-family="Sora" font-size="7" fill="#7c3aed">RISC</text>
+          <text x="90" y="58" text-anchor="middle" font-family="Sora" font-size="6" fill="#6d5a8a">power efficient</text>
+          <text x="90" y="99" text-anchor="middle" font-family="Sora" font-size="8" fill="#6b21a8">Phones · Embedded</text>
+        </svg>
+        <div class="plat-bars">
+          <div class="plat-bar-row"><span>Performance</span><div class="bar-bg"><div class="bar-fill" style="width:65%;background:#9b59b6"></div></div></div>
+          <div class="plat-bar-row"><span>Efficiency</span><div class="bar-bg"><div class="bar-fill" style="width:93%;background:#9b59b6"></div></div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Components deep dive -->
-      <div class="sub-section">
-        <h3 class="sub-h">🔍 Components in Detail</h3>
-        <div class="component-list">
+<!-- ████ SBC PLATFORMS ████ -->
+<section id="sbc" class="section">
+  <div class="sec-head">
+    <span class="lbl green">Platforms</span>
+    <h2>Single Board Computers — <em>Compared</em></h2>
+    <p class="sec-desc">Three families, three purposes. Which one you'd pick depends entirely on what you're building.</p>
+  </div>
 
-          <div class="comp-item" style="--ci:#fde8f0">
-            <div class="comp-num">01</div>
-            <div class="comp-body">
-              <h4>🧠 CPU — The Brain</h4>
-              <p>Fetches, decodes, and executes instructions. Ranges from <strong>4-bit</strong> to <strong>128-bit</strong> processors. Connects all components into a single system.</p>
-            </div>
-          </div>
+  <!-- Visual radar / bar comparison -->
+  <div class="sbc-row">
 
-          <div class="comp-item" style="--ci:#e0f7ee">
-            <div class="comp-num">02</div>
-            <div class="comp-body">
-              <h4>💾 Memory — Storage</h4>
-              <p>Contained on the same chip. Stores both program and data.</p>
-              <div class="mem-row">
-                <div class="mem-badge rom">ROM / Flash<br/><small>Non-volatile · stores program code</small></div>
-                <div class="mem-badge ram">RAM<br/><small>Volatile · temporary data during execution</small></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="comp-item" style="--ci:#e0eeff">
-            <div class="comp-num">03</div>
-            <div class="comp-body">
-              <h4>🔌 Connectivity & Communication</h4>
-              <div class="port-row">
-                <div class="port-card">
-                  <strong>I/O Ports</strong>
-                  <p>Drive external hardware — LCD displays, printers, sensors</p>
-                </div>
-                <div class="port-card">
-                  <strong>Serial Ports</strong>
-                  <p>Serial interface between MCU and other peripherals</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="comp-item" style="--ci:#fff3d6">
-            <div class="comp-num">04</div>
-            <div class="comp-body">
-              <h4>⚙️ Control & Conversion</h4>
-              <div class="port-row">
-                <div class="port-card">
-                  <strong>⏱ Timers & Counters</strong>
-                  <p>Count external pulses, pulse generation, clock functions, frequency measurement, oscillations</p>
-                </div>
-                <div class="port-card">
-                  <strong>🔄 ADC & DAC</strong>
-                  <p><b>ADC:</b> Analog → Digital (temperature, light) &nbsp;|&nbsp; <b>DAC:</b> Digital → Analog (DC motors)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
+    <div class="sbc" style="--s:#ead6ff">
+      <div class="sbc-top">
+        <!-- Chip icon for Nvidia -->
+        <svg viewBox="0 0 80 60" style="width:80px;height:60px">
+          <rect x="15" y="10" width="50" height="40" rx="6" fill="#1a1a2e"/>
+          <rect x="22" y="17" width="36" height="26" rx="4" fill="#76b900"/>
+          <text x="40" y="33" text-anchor="middle" font-family="Sora" font-size="7" font-weight="800" fill="white">NVIDIA</text>
+          <rect x="5" y="18" width="10" height="5" rx="2" fill="#ead6ff"/>
+          <rect x="5" y="27" width="10" height="5" rx="2" fill="#ead6ff"/>
+          <rect x="5" y="36" width="10" height="5" rx="2" fill="#ead6ff"/>
+          <rect x="65" y="18" width="10" height="5" rx="2" fill="#ead6ff"/>
+          <rect x="65" y="27" width="10" height="5" rx="2" fill="#ead6ff"/>
+          <rect x="65" y="36" width="10" height="5" rx="2" fill="#ead6ff"/>
+        </svg>
+        <div>
+          <div class="sbc-name">NVIDIA Jetson</div>
+          <div class="sbc-tag-text">🤖 AI Powerhouse</div>
         </div>
       </div>
+      <div class="sbc-specs">
+        <div class="spec-row"><strong>Processor</strong><span>ARM SoC + NVIDIA GPU</span></div>
+        <div class="spec-row"><strong>Best for</strong><span>Deep learning, robotics, edge AI</span></div>
+        <div class="spec-row"><strong>Examples</strong><span>Jetson Nano, Xavier, Orin</span></div>
+      </div>
+      <div class="sbc-bars">
+        <div class="sb-row"><span>AI Power</span><div class="sb-bg"><div class="sb-fill" style="width:97%;background:#76b900"></div></div><span class="sb-pct">★★★★★</span></div>
+        <div class="sb-row"><span>Affordable</span><div class="sb-bg"><div class="sb-fill" style="width:20%;background:#76b900"></div></div><span class="sb-pct">★☆☆☆☆</span></div>
+        <div class="sb-row"><span>Community</span><div class="sb-bg"><div class="sb-fill" style="width:55%;background:#76b900"></div></div><span class="sb-pct">★★★☆☆</span></div>
+      </div>
+      <div class="verdict v-good">✅ Best AI/ML performance</div>
+      <div class="verdict v-bad">❌ Most expensive & power-hungry</div>
+    </div>
 
-      <!-- MCU Types -->
-      <div class="sub-section">
-        <h3 class="sub-h">📂 Microcontroller Types</h3>
-
-        <!-- By bit width -->
-        <div class="type-block">
-          <div class="type-label">1 · By Bit Width</div>
-          <div class="bit-row">
-            <div class="bit-card" style="--bc:#fde8f0">
-              <div class="bit-size">8-bit</div>
-              <div class="bit-desc">Basic logic & arithmetic. Low power, simple tasks.</div>
-              <div class="bit-ex">Intel 8031, 8051</div>
-            </div>
-            <div class="bit-arrow">→</div>
-            <div class="bit-card" style="--bc:#fff3d6">
-              <div class="bit-size">16-bit</div>
-              <div class="bit-desc">Greater accuracy & performance than 8-bit.</div>
-              <div class="bit-ex">Intel 8096</div>
-            </div>
-            <div class="bit-arrow">→</div>
-            <div class="bit-card" style="--bc:#e0f7ee">
-              <div class="bit-size">32-bit</div>
-              <div class="bit-desc">High-end, complex logic. Automatically controlled appliances.</div>
-              <div class="bit-ex">ARM Cortex-M, PIC32</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- By Memory Structure -->
-        <div class="type-block">
-          <div class="type-label">2 · By Memory Structure</div>
-          <div class="mem-compare">
-            <div class="mc-card" style="--mcc:#e0eeff">
-              <h5>External Memory MCU</h5>
-              <p>Used when the embedded system needs components <em>not</em> on a single chip</p>
-            </div>
-            <div class="mc-vs">VS</div>
-            <div class="mc-card" style="--mcc:#e0f7ee">
-              <h5>Embedded Memory MCU ✅</h5>
-              <p>Most common — CPU, RAM, ROM & I/O all integrated into <strong>one silicon chip</strong></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- By Instruction Set -->
-        <div class="type-block">
-          <div class="type-label">3 · By Instruction Set</div>
-          <div class="isa-compare">
-            <div class="isa-card" style="--ic:#fde8f0">
-              <div class="isa-name">CISC</div>
-              <div class="isa-full">Complex Instruction Set Computer</div>
-              <p>Reduces <strong>number of instructions</strong> per program. Fewer lines of code but slower execution (multiple clock cycles per instruction).</p>
-            </div>
-            <div class="isa-card" style="--ic:#e0f7ee">
-              <div class="isa-name">RISC</div>
-              <div class="isa-full">Reduced Instruction Set Computer</div>
-              <p>Reduces <strong>execution time</strong> — one clock cycle per instruction. Uses pipelining for parallel execution. More lines of code needed.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- By Architecture -->
-        <div class="type-block">
-          <div class="type-label">4 · By Architecture</div>
-          <div class="arch-compare">
-            <div class="arch-card" style="--acc:#fff3d6">
-              <div class="arch-name">Princeton / Von Neumann</div>
-              <div class="arch-diagram">
-                <div class="arch-box cpu-box">CPU</div>
-                <div class="arch-bus shared-bus">⟵ Shared Bus (Instructions + Data) ⟶</div>
-                <div class="arch-box mem-box">Memory</div>
-              </div>
-              <p>Shared bus & memory space for instructions and data</p>
-            </div>
-            <div class="arch-card" style="--acc:#e0eeff">
-              <div class="arch-name">Harvard Architecture ⚡ Faster</div>
-              <div class="arch-diagram harvard">
-                <div class="arch-box cpu-box">CPU</div>
-                <div class="arch-buses">
-                  <div class="h-bus prog-bus">Program Bus ⟶</div>
-                  <div class="h-bus data-bus">Data Bus ⟶</div>
-                </div>
-                <div class="arch-mems">
-                  <div class="arch-box small-box">Program Memory</div>
-                  <div class="arch-box small-box">Data Memory</div>
-                </div>
-              </div>
-              <p>Separate buses — CPU fetches instructions & data simultaneously</p>
-            </div>
-          </div>
+    <div class="sbc" style="--s:#ffd6e7">
+      <div class="sbc-top">
+        <!-- RPi icon -->
+        <svg viewBox="0 0 80 60" style="width:80px;height:60px">
+          <rect x="10" y="8" width="60" height="44" rx="5" fill="#2d6a4f"/>
+          <rect x="18" y="15" width="44" height="28" rx="4" fill="#1b4332"/>
+          <!-- Raspberry shape suggestion -->
+          <circle cx="40" cy="29" r="10" fill="#c51a4a" opacity=".8"/>
+          <text x="40" y="33" text-anchor="middle" font-family="Sora" font-size="7" font-weight="800" fill="white">RPi</text>
+          <rect x="0" y="16" width="10" height="5" rx="2" fill="#ffd6e7"/>
+          <rect x="0" y="25" width="10" height="5" rx="2" fill="#ffd6e7"/>
+          <rect x="0" y="34" width="10" height="5" rx="2" fill="#ffd6e7"/>
+          <rect x="70" y="16" width="10" height="5" rx="2" fill="#ffd6e7"/>
+          <rect x="70" y="25" width="10" height="5" rx="2" fill="#ffd6e7"/>
+          <rect x="70" y="34" width="10" height="5" rx="2" fill="#ffd6e7"/>
+        </svg>
+        <div>
+          <div class="sbc-name">Raspberry Pi</div>
+          <div class="sbc-tag-text">🍓 DIY Standard</div>
         </div>
       </div>
+      <div class="sbc-specs">
+        <div class="spec-row"><strong>Processor</strong><span>Broadcom SoC (BCM2711/2712)</span></div>
+        <div class="spec-row"><strong>Best for</strong><span>Learning, DIY projects, everyday use</span></div>
+        <div class="spec-row"><strong>Examples</strong><span>Pi Model B+, Pi 4, Pi 5</span></div>
+      </div>
+      <div class="sbc-bars">
+        <div class="sb-row"><span>AI Power</span><div class="sb-bg"><div class="sb-fill" style="width:28%;background:#c51a4a"></div></div><span class="sb-pct">★★☆☆☆</span></div>
+        <div class="sb-row"><span>Affordable</span><div class="sb-bg"><div class="sb-fill" style="width:93%;background:#c51a4a"></div></div><span class="sb-pct">★★★★★</span></div>
+        <div class="sb-row"><span>Community</span><div class="sb-bg"><div class="sb-fill" style="width:97%;background:#c51a4a"></div></div><span class="sb-pct">★★★★★</span></div>
+      </div>
+      <div class="verdict v-good">✅ Most affordable, biggest community</div>
+      <div class="verdict v-bad">❌ Low GPU — not for heavy AI/robotics</div>
+    </div>
 
-      <!-- MCU Families -->
-      <div class="sub-section">
-        <h3 class="sub-h">🏭 Microcontroller Families</h3>
-        <div class="family-grid">
-          <div class="fam-card" style="--fc:#fde8f0">
-            <div class="fam-num">8051</div>
-            <div class="fam-maker">Intel</div>
-            <div class="fam-variants">
-              <span>8051 Standard</span>
-              <span>8052 Enhanced (256B RAM, 3 timers)</span>
-              <span>8031 ROM-less</span>
-            </div>
-            <div class="fam-mem">NV-RAM · UV-EPROM · Flash</div>
-          </div>
-          <div class="fam-card" style="--fc:#e0f7ee">
-            <div class="fam-num">PIC</div>
-            <div class="fam-maker">Microchip Technology</div>
-            <div class="fam-variants">
-              <span>Solitary chip MCU</span>
-              <span>8-bit market leader</span>
-              <span>Serial programming</span>
-            </div>
-            <div class="fam-mem">Low cost · Wide availability</div>
-          </div>
-          <div class="fam-card" style="--fc:#e0eeff">
-            <div class="fam-num">AVR</div>
-            <div class="fam-maker">Atmel (1996)</div>
-            <div class="fam-variants">
-              <span>Harvard Architecture</span>
-              <span>8-bit RISC</span>
-              <span>First on-chip Flash memory</span>
-            </div>
-            <div class="fam-mem">Customized Harvard arch</div>
-          </div>
-          <div class="fam-card" style="--fc:#fff3d6">
-            <div class="fam-num">ARM</div>
-            <div class="fam-maker">ARM Ltd. / Acorn 1980</div>
-            <div class="fam-variants">
-              <span>32-bit RISC</span>
-              <span>Designs & licenses (doesn't fab)</span>
-              <span>No on-board Flash</span>
-            </div>
-            <div class="fam-mem">Used in smartphones, IoT</div>
-          </div>
+    <div class="sbc" style="--s:#d6ffe8">
+      <div class="sbc-top">
+        <!-- Rock Pi icon -->
+        <svg viewBox="0 0 80 60" style="width:80px;height:60px">
+          <rect x="10" y="8" width="60" height="44" rx="5" fill="#1c3a4a"/>
+          <rect x="18" y="15" width="44" height="28" rx="4" fill="#0f2535"/>
+          <text x="40" y="28" text-anchor="middle" font-family="Sora" font-size="7" font-weight="800" fill="#4a90a4">ROCK</text>
+          <text x="40" y="38" text-anchor="middle" font-family="Sora" font-size="7" font-weight="800" fill="#4a90a4">Pi</text>
+          <rect x="0" y="16" width="10" height="5" rx="2" fill="#d6ffe8"/>
+          <rect x="0" y="25" width="10" height="5" rx="2" fill="#d6ffe8"/>
+          <rect x="0" y="34" width="10" height="5" rx="2" fill="#d6ffe8"/>
+          <rect x="70" y="16" width="10" height="5" rx="2" fill="#d6ffe8"/>
+          <rect x="70" y="25" width="10" height="5" rx="2" fill="#d6ffe8"/>
+          <rect x="70" y="34" width="10" height="5" rx="2" fill="#d6ffe8"/>
+        </svg>
+        <div>
+          <div class="sbc-name">Rock Pi</div>
+          <div class="sbc-tag-text">🪨 Mid-Range Pick</div>
         </div>
       </div>
-
-      <!-- Applications -->
-      <div class="sub-section">
-        <h3 class="sub-h">🌍 Applications of Microcontrollers</h3>
-        <div class="app-grid">
-          <div class="app-card" style="--apc:#fde8f0">🌡️<span>Day-to-Day</span><small>Temp sensing, fire detection, safety</small></div>
-          <div class="app-card" style="--apc:#e0f7ee">🏭<span>Industrial</span><small>Process control, metering, voltmeters</small></div>
-          <div class="app-card" style="--apc:#e0eeff">📱<span>Consumer Electronics</span><small>Computers, printers, cameras</small></div>
-          <div class="app-card" style="--apc:#fff3d6">🥽<span>iSphere</span><small>Proximity UI for 3D modeling</small></div>
-          <div class="app-card" style="--apc:#ede0ff">🍳<span>AR Kitchens</span><small>Smart interfaces for guided cooking</small></div>
-        </div>
+      <div class="sbc-specs">
+        <div class="spec-row"><strong>Processor</strong><span>Rockchip SoC (RK3399/RK3588)</span></div>
+        <div class="spec-row"><strong>Best for</strong><span>Home servers, Android TV, DIY</span></div>
+        <div class="spec-row"><strong>Examples</strong><span>Rock Pi 4, Rock Pi 5</span></div>
       </div>
-    </section>
-
-    <!-- ── LECTURE 2 ── -->
-    <section id="lecture2" class="section">
-      <div class="section-label-wrap">
-        <span class="section-label blue">Lecture 2</span>
-        <h2>What is a Microprocessor?</h2>
+      <div class="sbc-bars">
+        <div class="sb-row"><span>AI Power</span><div class="sb-bg"><div class="sb-fill" style="width:55%;background:#4a90a4"></div></div><span class="sb-pct">★★★☆☆</span></div>
+        <div class="sb-row"><span>Affordable</span><div class="sb-bg"><div class="sb-fill" style="width:67%;background:#4a90a4"></div></div><span class="sb-pct">★★★★☆</span></div>
+        <div class="sb-row"><span>Community</span><div class="sb-bg"><div class="sb-fill" style="width:38%;background:#4a90a4"></div></div><span class="sb-pct">★★☆☆☆</span></div>
       </div>
+      <div class="verdict v-good">✅ Stronger CPU than RPi, cheaper than Jetson</div>
+      <div class="verdict v-bad">❌ Much less community & software support</div>
+    </div>
 
-      <div class="hero-card" style="--hc:#e0eeff">
-        <div class="hero-card-text">
-          <h3>Microprocessor vs Microcontroller</h3>
-          <p>A <strong>microprocessor</strong> is an IC that functions as a <strong>complete CPU on a single chip</strong>. It processes data by executing programmed instructions and managing all computational & control tasks.</p>
-          <p style="margin-top:12px">Unlike a microcontroller, it does <em>not</em> include memory, I/O, or peripherals on the same chip — it needs external components.</p>
-        </div>
-        <div class="hero-card-img dark-bg">
-          <img src="https://c8.alamy.com/comp/2AFJX7K/computer-microprocessor-chip-on-circuit-board-2AFJX7K.jpg" alt="Microprocessor chip" onerror="this.parentElement.style.display='none'" />
-        </div>
-      </div>
+  </div>
+</section>
 
-      <!-- Architecture -->
-      <div class="sub-section">
-        <h3 class="sub-h">🏛️ Microprocessor Architecture</h3>
-        <div class="arch-flow">
-          <div class="af-box" style="--af:#fde8f0">
-            <div class="af-icon">➕</div>
-            <h4>ALU</h4>
-            <p>Arithmetic Logical Unit — performs arithmetic & logical operations</p>
-          </div>
-          <div class="af-line"></div>
-          <div class="af-box" style="--af:#e0f7ee">
-            <div class="af-icon">🎛️</div>
-            <h4>Control Unit</h4>
-            <p>Directs data flow & instruction execution</p>
-          </div>
-          <div class="af-line"></div>
-          <div class="af-box" style="--af:#e0eeff">
-            <div class="af-icon">📋</div>
-            <h4>Registers</h4>
-            <p>Temporary data storage inside the CPU</p>
-          </div>
-          <div class="af-line"></div>
-          <div class="af-box" style="--af:#fff3d6">
-            <div class="af-icon">🚌</div>
-            <h4>Buses</h4>
-            <div class="bus-tags">
-              <span>📊 Data Bus — transfers data</span>
-              <span>📍 Address Bus — specifies memory location</span>
-              <span>🕹 Control Bus — manages operations</span>
-            </div>
-          </div>
-        </div>
-      </div>
+</main>
 
-      <!-- CISC vs RISC deep dive -->
-      <div class="sub-section">
-        <h3 class="sub-h">⚔️ CISC vs RISC Deep Dive</h3>
-        <div class="cisc-risc">
-          <div class="cr-card cisc" style="--cc:#fde8f0">
-            <div class="cr-badge">CISC</div>
-            <h4>Complex Instruction Set</h4>
-            <p>Designed to <strong>minimise the number of instructions</strong> per program</p>
-            <div class="cr-detail">
-              <div class="cr-row good">✅ Very small program length</div>
-              <div class="cr-row bad">❌ Multiple machine cycles per instruction</div>
-              <div class="cr-row bad">❌ Slower execution speed</div>
-            </div>
-            <div class="cr-note">A single CISC instruction can do: arithmetic + memory store + memory read</div>
-            <div class="cr-ex">Used in: x86 → Desktops, Laptops</div>
-          </div>
-          <div class="cr-card risc" style="--cc:#e0f7ee">
-            <div class="cr-badge risc-badge">RISC</div>
-            <h4>Reduced Instruction Set</h4>
-            <p>Designed to <strong>reduce execution time</strong> with simple instructions</p>
-            <div class="cr-detail">
-              <div class="cr-row good">✅ One clock cycle per instruction</div>
-              <div class="cr-row good">✅ Pipelining → parallel execution</div>
-              <div class="cr-row bad">❌ More lines of code needed</div>
-              <div class="cr-row bad">❌ Needs more RAM</div>
-            </div>
-            <div class="cr-note">Pipelining = parts of different instructions execute simultaneously</div>
-            <div class="cr-ex">Used in: ARM → Smartphones, Embedded</div>
-          </div>
-        </div>
-      </div>
-    </section>
+<footer>
+  <p>9700/42 · Microprocessors &amp; Interfacing · Visual Study Notes</p>
+</footer>
 
-    <!-- ── PLATFORMS ── -->
-    <section id="platforms" class="section">
-      <div class="section-label-wrap">
-        <span class="section-label purple">Section 2.4</span>
-        <h2>Architectures & Platforms</h2>
-      </div>
-
-      <!-- x86 vs ARM -->
-      <div class="sub-section">
-        <h3 class="sub-h">🆚 x86 vs ARM</h3>
-        <div class="platform-compare">
-          <div class="plat-card x86" style="--pc:#fff3d6">
-            <div class="plat-badge">x86</div>
-            <div class="plat-chip">CISC</div>
-            <h4>High Performance</h4>
-            <div class="plat-rows">
-              <div class="plat-row"><span>🎯 Goal</span><span>Heavy tasks & performance</span></div>
-              <div class="plat-row"><span>💻 Use</span><span>Desktops, PCs, Laptops</span></div>
-              <div class="plat-row"><span>👑 Dominates</span><span>Desktop market</span></div>
-            </div>
-          </div>
-          <div class="plat-vs">VS</div>
-          <div class="plat-card arm" style="--pc:#e0eeff">
-            <div class="plat-badge arm-b">ARM</div>
-            <div class="plat-chip">RISC</div>
-            <h4>Power Efficient</h4>
-            <div class="plat-rows">
-              <div class="plat-row"><span>🎯 Goal</span><span>Battery life & efficiency</span></div>
-              <div class="plat-row"><span>📱 Use</span><span>Smartphones, tablets, IoT</span></div>
-              <div class="plat-row"><span>👑 Dominates</span><span>Mobile & embedded (Pi, Rock Pi)</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SBC Comparison -->
-      <div class="sub-section">
-        <h3 class="sub-h">🖥 Single Board Computer (SBC) Comparison</h3>
-        <div class="sbc-grid">
-
-          <div class="sbc-card nvidia">
-            <div class="sbc-img-wrap">
-              <img src="https://avantek.co.uk/app/uploads/2023/08/Avantek-BOXER-8654AI-KIT-1.jpg" alt="NVIDIA Jetson" onerror="this.style.display='none'" />
-            </div>
-            <div class="sbc-body">
-              <div class="sbc-badge nvidia-b">NVIDIA Jetson</div>
-              <div class="sbc-tagline">🤖 AI & Robotics Powerhouse</div>
-              <div class="sbc-facts">
-                <div class="sbc-fact"><span>Processor</span><span>ARM SoCs + NVIDIA GPU</span></div>
-                <div class="sbc-fact"><span>Use Case</span><span>Deep learning, edge AI, robotics</span></div>
-                <div class="sbc-fact"><span>Software</span><span>JetPack SDK, CUDA, TensorRT</span></div>
-                <div class="sbc-fact"><span>Examples</span><span>Nano, Xavier, Orin, TX1</span></div>
-              </div>
-              <div class="sbc-tradeoff">
-                <div class="sbc-good">✅ Excellent AI / ML performance</div>
-                <div class="sbc-bad">❌ Most expensive, power-hungry</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="sbc-card rpi">
-            <div class="sbc-img-wrap">
-              <img src="https://dfimg.dfrobot.com/nobody/wiki/adebb625b80d48abc4038f5d30b4cb2f.jpg" alt="Raspberry Pi" onerror="this.style.display='none'" />
-            </div>
-            <div class="sbc-body">
-              <div class="sbc-badge rpi-b">Raspberry Pi</div>
-              <div class="sbc-tagline">🎓 Affordable Education Standard</div>
-              <div class="sbc-facts">
-                <div class="sbc-fact"><span>Processor</span><span>Broadcom SoCs (BCM2711, BCM2712)</span></div>
-                <div class="sbc-fact"><span>Use Case</span><span>Learning, DIY, basic computing</span></div>
-                <div class="sbc-fact"><span>Software</span><span>Raspberry Pi OS (Debian-based)</span></div>
-                <div class="sbc-fact"><span>Examples</span><span>Model B+, Pi 4, Pi 5</span></div>
-              </div>
-              <div class="sbc-tradeoff">
-                <div class="sbc-good">✅ Cheap, easy, huge community</div>
-                <div class="sbc-bad">❌ Low GPU — not for heavy AI/robotics</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="sbc-card rockpi">
-            <div class="sbc-img-wrap rp-placeholder">🪨<br/><small>Rock Pi</small></div>
-            <div class="sbc-body">
-              <div class="sbc-badge rock-b">Rock Pi</div>
-              <div class="sbc-tagline">⚡ High Performance Mid-Range</div>
-              <div class="sbc-facts">
-                <div class="sbc-fact"><span>Processor</span><span>Rockchip SoCs (RK3399, RK3588)</span></div>
-                <div class="sbc-fact"><span>Use Case</span><span>Home servers, Android TV, heavy DIY</span></div>
-                <div class="sbc-fact"><span>Software</span><span>Linux distros + Android</span></div>
-                <div class="sbc-fact"><span>Examples</span><span>Rock Pi 4, Rock Pi 5</span></div>
-              </div>
-              <div class="sbc-tradeoff">
-                <div class="sbc-good">✅ Stronger CPU than Pi, cheaper than Jetson</div>
-                <div class="sbc-bad">❌ Much less community & software support</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Quick comparison table -->
-        <div class="quick-table-wrap">
-          <h4 class="qt-title">Quick Comparison</h4>
-          <div class="quick-table">
-            <div class="qt-head">
-              <div></div>
-              <div>NVIDIA Jetson</div>
-              <div>Raspberry Pi</div>
-              <div>Rock Pi</div>
-            </div>
-            <div class="qt-row">
-              <div class="qt-label">Price</div>
-              <div class="qt-cell high">💸💸💸 High</div>
-              <div class="qt-cell low">💸 Low</div>
-              <div class="qt-cell mid">💸💸 Mid</div>
-            </div>
-            <div class="qt-row">
-              <div class="qt-label">AI Performance</div>
-              <div class="qt-cell high">🌟🌟🌟</div>
-              <div class="qt-cell low">🌟</div>
-              <div class="qt-cell mid">🌟🌟</div>
-            </div>
-            <div class="qt-row">
-              <div class="qt-label">Community</div>
-              <div class="qt-cell mid">🌟🌟</div>
-              <div class="qt-cell high">🌟🌟🌟</div>
-              <div class="qt-cell low">🌟</div>
-            </div>
-            <div class="qt-row">
-              <div class="qt-label">CPU Power</div>
-              <div class="qt-cell high">🔥🔥🔥</div>
-              <div class="qt-cell low">🔥</div>
-              <div class="qt-cell mid">🔥🔥</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>9700/42 · Microprocessors & Interfacing · Visual Study Guide</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
